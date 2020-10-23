@@ -1,10 +1,13 @@
 const express = require('express');
 const routes = express.Router();
+const requireDir = require('require-dir');
 
 const UsersController = require('./app/controllers/UsersController');
 const SessionController = require('./app/controllers/SessionController');
+// const controllers = requireDir('./app/controllers')
 
 const authMiddleware = require('./app/middleware/auth');
+
 
 // Primeira rota
 routes.get('/',(req,res) => {res.send('hello world');})

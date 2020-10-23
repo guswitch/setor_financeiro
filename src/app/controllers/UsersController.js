@@ -7,7 +7,7 @@ const { generatePin } = require('generate-pin');
 const emailSettings = require('../../config/email');
 const tokenSettings = require('../../config/auth');
 
-const User = mongoose.model('Users');
+const User = mongoose.model('User');
 const Token = mongoose.model('Token');
 const Pin = mongoose.model('Pin');
 
