@@ -13,7 +13,7 @@ module.exports = {
 
     // Metodo Details
     async Details(req, res){
-        const account = await AccountsReceivable.findById(req.params.id);
+        const account = await AccountsReceivable.findById(req.params.id).populate('debtorId','name');
 
         if(!account)
         return res.status(404).json({error: 'account not found'});

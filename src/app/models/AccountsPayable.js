@@ -22,6 +22,11 @@ const AccountsPayableSchema = new mongoose.Schema({
     maturityDate:{
         type: Date,
         required: true,
+    },
+    paid: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 

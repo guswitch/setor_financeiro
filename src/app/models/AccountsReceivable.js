@@ -18,6 +18,11 @@ const AccountsReceivableSchema = new mongoose.Schema({
     maturityDate:{
         type: Date,
         required: true,
+    },
+    received: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
