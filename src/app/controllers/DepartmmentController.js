@@ -24,7 +24,7 @@ module.exports = {
     // Metodo Create
     async Create(req,res){
         const department = await Department.create(req.body);
-        return res.status(200).json(department);
+        return res.send(department);
     },
 
     // Metodo Update
