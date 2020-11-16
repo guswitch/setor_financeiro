@@ -8,7 +8,7 @@ module.exports = {
     // Metodo Index
     async Index(req,res){
         const departments = await Department.find();
-        return res.status(200).json(departments);
+        return res.json(departments);
     },
 
     // Metodo Details
@@ -18,13 +18,13 @@ module.exports = {
         if(!department)
         return res.status(404).json({error: 'department not found'});
 
-        return res.status(200).json(department);
+        return res.json(department);
     },
 
     // Metodo Create
     async Create(req,res){
         const department = await Department.create(req.body);
-        return res.send(department);
+        return res.json(department)
     },
 
     // Metodo Update
