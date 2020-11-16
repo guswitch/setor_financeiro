@@ -52,9 +52,9 @@ module.exports = {
         let mailOptions = {
             from: process.env.MAIL_AUTH_USER,
             to: email,
-            subject: 'Confirmação de email - Kurriculum',
+            subject: 'Confirmação de email - Setor Financeiro',
             text: `Olá, aqui está seu link de validação: \n
-            http:\/\/${req.headers.host}\/api\/User\/ConfirmEmail\/${token.token}`
+            https:\/\/${req.headers.host}\/api\/User\/ConfirmEmail\/${token.token}`
         }
 
         transporter.sendMail(mailOptions,(error,info)=>{
@@ -108,9 +108,9 @@ module.exports = {
             let mailOptions = {
                 from: process.env.MAIL_AUTH_USER,
                 to: email,
-                subject: 'Confirmação de email - Kurriculum',
+                subject: 'Confirmação de email - Setor Financeiro',
                 text: `Olá, aqui está seu link de validação: \n
-                http:\/\/${req.headers.host}\/api\/User\/ConfirmEmail\/${token.token}`
+                https:\/\/${req.headers.host}\/api\/User\/ConfirmEmail\/${token.token}`
             }
     
             transporter.sendMail(mailOptions,(error,info)=>{
