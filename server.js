@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const requireDir = require('require-dir');
+require('dotenv/config');
 
 // Iniciando o app
 const app = express();
@@ -14,7 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/setor_financeiro',{ useNewUrlParser: true,useUnifiedTopology: true, useCreateIndex: true }); // Criando o DB
+mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true,useUnifiedTopology: true, useCreateIndex: true }); // Criando o DB
 
 requireDir('./src/app/models'); // Usando a biblioteca require-dir para registrar todos os models de uma vez
 

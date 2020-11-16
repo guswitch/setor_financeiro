@@ -1,7 +1,7 @@
 const {promisify} = require('util');
 const jwt = require('jsonwebtoken')
 
-const tokenSettings = require('../../config/auth');
+require('dotenv/config');
 
 module.exports = async (req,res, next) => {
     const authHeader = req.headers.authorization;
@@ -12,7 +12,7 @@ module.exports = async (req,res, next) => {
     const [, token] = authHeader.split(' ');
 
     try {
-       const decoded = await promisify(jwt.verify)(token, tokenSettings.ttl);
+       const decoded = await promisify(jwt.verify)(token, process.env.TOKEN_TTL);
 
        req.UserId = decoded.id;
 

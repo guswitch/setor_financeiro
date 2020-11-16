@@ -4,21 +4,22 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { generatePin } = require('generate-pin');
 
-const emailSettings = require('../../config/email');
-const tokenSettings = require('../../config/auth');
+require('dotenv/config');
 
 const User = mongoose.model('User');
 const Token = mongoose.model('Token');
 const Pin = mongoose.model('Pin');
 
 const transporter = nodemailer.createTransport({
-    host: emailSettings.host,
-    port: emailSettings.port,
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
     auth: {
-        user: emailSettings.auth.user, 
-        pass: emailSettings.auth.pass
+        user: process.env.MAIL_AUTH_USER, 
+        pass: process.env.MAIL_AUTH_PASS
     }
 });
+
+
 
 module.exports = {
 
@@ -46,10 +47,10 @@ module.exports = {
 
         const user = await User.create(req.body);
 
-        const token = await Token.create({_userId: user._id, token: jwt.sign({email},tokenSettings.secret,{expiresIn: tokenSettings.ttl})});
+        const token = await Token.create({_userId: user._id, token: jwt.sign({email},process.env.TOKEN_SECRET,{expiresIn: process.env.TOKEN_TTL})});
 
         let mailOptions = {
-            from: emailSettings.auth.user,
+            from: process.env.MAIL_AUTH_USER,
             to: email,
             subject: 'Confirmação de email - Kurriculum',
             text: `Olá, aqui está seu link de validação: \n
@@ -105,7 +106,7 @@ module.exports = {
         const token = await Token.create({_userId: user._id, token: jwt.sign({email},tokenSettings.secret,{expiresIn: tokenSettings.ttl})})
     
             let mailOptions = {
-                from: emailSettings.auth.user,
+                from: process.env.MAIL_AUTH_USER,
                 to: email,
                 subject: 'Confirmação de email - Kurriculum',
                 text: `Olá, aqui está seu link de validação: \n
@@ -142,7 +143,7 @@ module.exports = {
         await Pin.create({_userId: user._id,pin: number[0]})
 
         let mailOptions = {
-            from: emailSettings.auth.user,
+            from: process.env.MAIL_AUTH_USER,
             to: email,
             subject: 'Recuperação de senha - Setor financeiro',
             text: `Olá, aqui está seu pin de recuperação de senha: \n
