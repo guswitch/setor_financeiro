@@ -7,13 +7,13 @@ module.exports = {
 
     // Metodo Index
     async Index(req,res){
-        const accounts = await AccountsReceivable.find();
+        const accounts = await AccountsReceivable.find().where('received', false);
         return res.json(accounts);
     },
 
     // Metodo Details
     async Details(req, res){
-        const account = await AccountsReceivable.findById(req.params.id).populate('debtorId','name');
+        const account = await AccountsReceivable.findById(req.params.id).populate('debtorId',['name']);
 
         if(!account)
         return res.status(404).json({error: 'account not found'});
@@ -37,5 +37,10 @@ module.exports = {
     async Delete(req,res){
         const account = await AccountsReceivable.findByIdAndDelete(req.params.id);
         return res.json({msg:'Excluido com sucesso'});
+    },
+
+    async IndexAccountsReceived(req,res){
+        const accounts = await AccountsReceivable.find().where('received', true);
+        return res.json(accounts);
     },
 }

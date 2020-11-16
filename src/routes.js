@@ -52,6 +52,7 @@ routes.delete('/Creditor/Delete/:id', CreditorController.Delete);
 
 // Accounts Payable Routes
 routes.get('/AccountsPayable/', AccountsPayable.Index);
+routes.get('/AccountsPaid/', AccountsPayable.IndexAccountsPaid);
 routes.get('/AccountsPayable/:id', AccountsPayable.Details);
 routes.post('/AccountsPayable/Create', AccountsPayable.Create);
 routes.put('/AccountsPayable/Update/:id', AccountsPayable.Update);
@@ -66,6 +67,7 @@ routes.delete('/Debtor/Delete/:id', DebtorController.Delete);
 
 // Accounts Receivable Routes
 routes.get('/AccountsReceivable/', AccountsReceivableController.Index);
+routes.get('/AccountsReceived/', AccountsReceivableController.IndexAccountsReceived);
 routes.get('/AccountsReceivable/:id', AccountsReceivableController.Details);
 routes.post('/AccountsReceivable/Create', AccountsReceivableController.Create);
 routes.put('/AccountsReceivable/Update/:id', AccountsReceivableController.Update);

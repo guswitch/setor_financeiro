@@ -7,7 +7,7 @@ module.exports = {
 
     // Metodo Index
     async Index(req,res){
-        const accounts = await AccountsPayable.find();
+        const accounts = await AccountsPayable.find().where('paid', false);
         return res.json(accounts);
     },
 
@@ -37,5 +37,10 @@ module.exports = {
     async Delete(req,res){
         const account = await AccountsPayable.findByIdAndDelete(req.params.id);
         return res.json({msg:'Excluido com sucesso'});
+    },
+
+    async IndexAccountsPaid(req,res){
+        const accounts = await AccountsPayable.find().where('paid', true);
+        return res.json(accounts);
     },
 }
